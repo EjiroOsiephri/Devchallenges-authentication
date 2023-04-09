@@ -46,11 +46,14 @@ body {
 input {
   display: block;
   border: 1px solid #bdbdbd;
+  color: #bdbdbd;
   margin-top: 1.2em;
   background-color: #333333;
   border-radius: 8px;
   width: 90%;
   height: 45px;
+  padding-left: 0.5em;
+  font-size: 18px;
 }
 input:last-child {
   margin-bottom: 1em;
@@ -87,6 +90,10 @@ p {
   justify-content: space-around;
   width: 80%;
   margin-bottom: 2em;
+}
+.extraLoginDiv img:hover {
+  border: 2px solid #2f80ed;
+  border-radius: 50%;
 }
 @media (max-width: 570px) {
   .container {

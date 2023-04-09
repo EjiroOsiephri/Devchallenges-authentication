@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styled from '../components/sass/signup.module.scss'
 import Logo from "../components/images/devchallenges.svg"
 import googleImage from "../components/images/Google.svg"
 import githubImage from "../components/images/Gihub.svg"
 import facebookImage from "../components/images/Facebook.svg"
 import twitterImage from "../components/images/Twitter.svg"
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from '../Firebase/Firebase'
 
 const Signup = () => {
+    // Setting states for firebase signup with email and password
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const emailChange = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const passwordChange = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const SignUp = async () => {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // codes visible on the screen are returned below
     return (
         <div className={Styled.container}>
             <div className={Styled.subContainer}>
@@ -18,11 +42,11 @@ const Signup = () => {
                     <h4>Master web development by making real-life projects. There are multiple paths for you to choose</h4>
                 </div>
                 <div className="input-container">
-                    <input type="text" />
-                    <input type="password" />
+                    <input type="text" placeholder='Email' onChange={emailChange} />
+                    <input type="password" placeholder='Password' onChange={passwordChange} />
                 </div>
                 <div className="button">
-                    <button>Start coding now</button>
+                    <button onClick={SignUp}>Start coding now</button>
                 </div>
                 <p>or continue with these social profile</p>
                 <div className={Styled.extraLoginDiv}>
