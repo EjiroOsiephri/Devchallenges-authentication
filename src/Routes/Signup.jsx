@@ -25,7 +25,7 @@ const Signup = () => {
                     <button>Start coding now</button>
                 </div>
                 <p>or continue with these social profile</p>
-                <div className="extraLoginDiv">
+                <div className={Styled.extraLoginDiv}>
                     <img src={googleImage} alt="" />
                     <img src={githubImage} alt="" />
                     <img src={facebookImage} alt="" />
