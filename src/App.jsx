@@ -25,8 +25,11 @@ function App() {
 
   const value = {
     emailUser: currentUser?.email,
-    button: displayModal
+    button: displayModal,
+    imgUrl: auth?.currentUser?.photoURL,
+    userName: auth?.currentUser?.displayName
   }
+
 
   return (
     <>
