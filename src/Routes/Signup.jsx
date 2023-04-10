@@ -11,6 +11,8 @@ import {
     signInWithPopup,
 } from 'firebase/auth';
 import { auth, googleProvider, githubProvider, facebookProvider } from '../Firebase/Firebase';
+import { motion } from "framer-motion"
+import Wrapper from '../components/Wrapper';
 
 const Signup = () => {
     // Setting states for firebase signup with email and password
@@ -20,6 +22,8 @@ const Signup = () => {
 
     // disabling button state
     const [disabled, setDisabled] = useState(false);
+    const [animate, setAnimate] = useState(false);
+
 
     const emailChange = (e) => {
         setEmail(e.target.value);
@@ -27,7 +31,9 @@ const Signup = () => {
 
     const passwordChange = (e) => {
         setPassword(e.target.value);
-
+        if (password.trim() < 1) {
+            setDisabled(true)
+        }
     };
 
     // Signing with google
@@ -69,34 +75,36 @@ const Signup = () => {
     // codes visible on the screen are returned below
 
     return (
-        <div className={Styled.container}>
-            <div className={Styled.subContainer}>
-                <div className={Styled.img}>
-                    <img src={Logo} alt="" />
+        <Wrapper>
+            <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
+                <div className={Styled.subContainer}>
+                    <div className={Styled.img}>
+                        <img src={Logo} alt="" />
+                    </div>
+                    <div className={Styled.typography}>
+                        <h3>Join thousands of learners from around the world </h3>
+                        <h4>Master web development by making real-life projects. There are multiple paths for you to choose</h4>
+                    </div>
+                    <div className="input-container">
+                        <input type="text" placeholder='Email' onChange={emailChange} />
+                        <input type="password" placeholder='Password' onChange={passwordChange} />
+                    </div>
+                    <div className="button">
+                        <button disabled={disabled} className={disabled ? Styled.disabledbutton : ''} onClick={SignUp}>Start coding now</button>
+                    </div>
+                    <p>or continue with these social profile</p>
+                    <div className={Styled.extraLoginDiv}>
+                        <img src={googleImage} onClick={googleSignin} />
+                        <img src={githubImage} onClick={githubSignin} />
+                        <img src={facebookImage} onClick={facebookSignin} />
+                        <img src={twitterImage} />
+                    </div>
+                    <div className="loginpage">
+                        <p>Already a member?<Link to='/login'>Login</Link></p>
+                    </div>
                 </div>
-                <div className={Styled.typography}>
-                    <h3>Join thousands of learners from around the world </h3>
-                    <h4>Master web development by making real-life projects. There are multiple paths for you to choose</h4>
-                </div>
-                <div className="input-container">
-                    <input type="text" placeholder='Email' onChange={emailChange} />
-                    <input type="password" placeholder='Password' onChange={passwordChange} />
-                </div>
-                <div className="button">
-                    <button disabled={disabled} className={disabled ? Styled.disabledbutton : ''} onClick={SignUp}>Start coding now</button>
-                </div>
-                <p>or continue with these social profile</p>
-                <div className={Styled.extraLoginDiv}>
-                    <img src={googleImage} onClick={googleSignin} />
-                    <img src={githubImage} onClick={githubSignin} />
-                    <img src={facebookImage} onClick={facebookSignin} />
-                    <img src={twitterImage} />
-                </div>
-                <div className="loginpage">
-                    <p>Already a member?<Link to='/login'>Login</Link></p>
-                </div>
-            </div>
-        </div>
+            </motion.div>
+        </Wrapper>
     )
 }
 
