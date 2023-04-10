@@ -63,7 +63,7 @@ const Login = () => {
                         <button>Start coding now</button>
                     </div>
                     <div className="loginpage">
-                        <p> Not a member?<Link to='/signup'>SignUp</Link></p>
+                        <p> Not a member?<Link to='/'>SignUp</Link></p>
                     </div>
                 </div>
             </motion.div>

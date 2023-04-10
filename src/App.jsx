@@ -31,13 +31,13 @@ function App() {
     userName: auth?.currentUser?.displayName
   }
 
-
+  console.log(auth.currentUser);
   return (
     <>
       <AuthContext.Provider value={value}>
         {module && <Module></Module>}
         <Routes>
-          <Route path='/signup' element={<Signup></Signup>}></Route>
+          <Route path='/' element={<Signup></Signup>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/navbar' element={<NavBar></NavBar>}></Route>
         </Routes>
