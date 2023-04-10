@@ -33,7 +33,7 @@ function App() {
       <AuthContext.Provider value={value}>
         {module && <Module></Module>}
         <Routes>
-          <Route path='/' element={<Signup></Signup>}></Route>
+          <Route path='/signup' element={<Signup></Signup>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
         </Routes>
       </AuthContext.Provider>

@@ -98,6 +98,10 @@ p {
 .disabledbutton {
   background-color: #d3d3d3; /* pale gray */
 }
+a {
+  color: #2f80ed;
+  text-decoration: none;
+}
 @media (max-width: 570px) {
   .container {
     width: 95%;

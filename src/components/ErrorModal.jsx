@@ -11,7 +11,7 @@ const BackDrop = () => {
 }
 const Modal = () => {
    const ctx = useContext(AuthContext)
-   console.log(ctx);
+
    return (
       <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.modal}>
          <div className={Styled.content}>
