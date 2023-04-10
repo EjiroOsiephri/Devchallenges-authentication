@@ -122,3 +122,15 @@
 .red {
   background-color: #eb5757;
 }
+@media (max-width: 675px) {
+  .dropdown {
+    margin-inline: auto;
+    width: 90%;
+  }
+  .dropdowns {
+    margin-inline: auto;
+    width: 90%;
+    margin-top: 6em;
+    margin-left: 1em;
+  }
+}

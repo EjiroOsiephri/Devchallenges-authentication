@@ -9,12 +9,11 @@ import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
 import { auth } from "../Firebase/Firebase"
 import { signOut } from 'firebase/auth'
 import { motion } from "framer-motion"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
    const ctx = useContext(AuthContext)
    const [username, setUsername] = useState(false)
-   const history = useNavigate();
 
    useEffect(() => {
       if (ctx.userName === null) {
@@ -52,7 +51,7 @@ const NavBar = () => {
    function okayFunc() {
       showDeleteModal(false)
    }
-
+   const history = useNavigate();
 
    function goToSignUp() {
       history('/');
@@ -79,7 +78,7 @@ const NavBar = () => {
                <h3>Group chat</h3>
             </div>
             <hr />
-            <div onClick={() => { deleteContainer(); goToSignUp(); }} className={Styled["button-end-container"]}>
+            <div onClick={deleteContainer} className={Styled["button-end-container"]}>
                <IoIosLogOut></IoIosLogOut>
                <h3>Logout</h3>
             </div>
@@ -88,7 +87,7 @@ const NavBar = () => {
             <h1>Are you sure you want to delete this account, you'd have to sign up again🤔</h1>
             <div className={Styled["button-delete-container"]}>
                <button onClick={okayFunc}>Go back</button>
-               <button onClick={Signout} className={Styled.red}>Delete Account</button>
+               <button onClick={() => { deleteContainer(); goToSignUp(); }} className={Styled.red}>Delete Account</button>
             </div>
          </motion.div>}
       </>
