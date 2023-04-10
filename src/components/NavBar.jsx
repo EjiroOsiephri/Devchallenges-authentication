@@ -9,10 +9,12 @@ import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
 import { auth } from "../Firebase/Firebase"
 import { signOut } from 'firebase/auth'
 import { motion } from "framer-motion"
+import { useNavigate } from "react-router-dom"
 
 const NavBar = () => {
    const ctx = useContext(AuthContext)
    const [username, setUsername] = useState(false)
+   const history = useNavigate();
 
    useEffect(() => {
       if (ctx.userName === null) {
@@ -51,6 +53,11 @@ const NavBar = () => {
       showDeleteModal(false)
    }
 
+
+   function goToSignUp() {
+      history('/');
+   }
+
    return (
       <>
          <div className={Styled.navbar}>
@@ -72,7 +79,7 @@ const NavBar = () => {
                <h3>Group chat</h3>
             </div>
             <hr />
-            <div onClick={deleteContainer} className={Styled["button-end-container"]}>
+            <div onClick={() => { deleteContainer(); goToSignUp(); }} className={Styled["button-end-container"]}>
                <IoIosLogOut></IoIosLogOut>
                <h3>Logout</h3>
             </div>
