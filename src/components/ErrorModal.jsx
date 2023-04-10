@@ -5,7 +5,8 @@ import AuthContext from '../context/AuthContext'
 import { useContext } from 'react'
 
 const BackDrop = () => {
-   return <div className='backdrop' ></div>
+   const ctx = useContext(AuthContext)
+   return <div className='backdrop' onClick={ctx.button} ></div>
 }
 const Modal = () => {
    const ctx = useContext(AuthContext)
@@ -16,7 +17,7 @@ const Modal = () => {
             <h1>Please enter a valid email and password , thanks</h1>
             <p>You can log in with google and the likes if you want to?</p>
          </div>
-         <div className="button">
+         <div className="button" onClick={ctx.button}>
             <button>Alright</button>
          </div>
       </div>
