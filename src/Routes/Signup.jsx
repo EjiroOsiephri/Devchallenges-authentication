@@ -76,7 +76,7 @@ const Signup = () => {
 
     return (
         <Wrapper>
-            <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
+            <motion.div className={Styled.container}>
                 <div className={Styled.subContainer}>
                     <div className={Styled.img}>
                         <img src={Logo} alt="" />
