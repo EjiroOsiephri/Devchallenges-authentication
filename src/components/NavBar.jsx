@@ -21,6 +21,14 @@ const NavBar = () => {
 
    }, [])
 
+   const [navbar, setShowNavBar] = useState(false)
+
+   const showNav = () => {
+      setShowNavBar(true);
+   }
+   const hideNav = () => {
+      setShowNavBar(false);
+   }
 
    return (
       <>
@@ -29,25 +37,25 @@ const NavBar = () => {
             <div className={Styled["about-me"]}>
                <BsFillPersonFill className={Styled.icon}></BsFillPersonFill>
                <h5>{username ? 'Enter your name' : `${ctx.userName}`}</h5>
-               <IoIosArrowDown className={Styled.icon1}></IoIosArrowDown>
-               <IoIosArrowUp className={Styled.icon2}></IoIosArrowUp>
+               {!navbar && <IoIosArrowDown className={Styled.icon1} onClick={showNav}></IoIosArrowDown>}
+               {navbar && <IoIosArrowUp className={Styled.icon2} onClick={hideNav}></IoIosArrowUp>}
             </div>
          </div>
-         <div className={Styled.dropdown}>
+         {navbar && <div className={Styled.dropdown}>
             <div className={Styled["button-container"]}>
                <BsPersonBoundingBox></BsPersonBoundingBox>
                <h3>My Profile</h3>
             </div>
-            <div className={Styled["button-container"]}>
+            <div className={Styled["button-second-container"]}>
                <BsPersonBoundingBox></BsPersonBoundingBox>
                <h3>Group chat</h3>
             </div>
             <hr />
-            <div className={Styled["button-container"]}>
+            <div className={Styled["button-end-container"]}>
                <IoIosLogOut></IoIosLogOut>
                <h3>Logout</h3>
             </div>
-         </div>
+         </div>}
       </>
    )
 }
