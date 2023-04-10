@@ -18,4 +18,4 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider(app)
 export const facebookProvider = new FacebookAuthProvider(app)
-export const githubProvider = new GithubAuthProvider()
+export const githubProvider = new GithubAuthProvider(app)
