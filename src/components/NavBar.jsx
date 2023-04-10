@@ -6,6 +6,9 @@ import { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { BsFillPersonFill, BsPersonBoundingBox } from "react-icons/bs";
 import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
+import { auth } from "../Firebase/Firebase"
+import { signOut } from 'firebase/auth'
+import { motion } from "framer-motion"
 
 const NavBar = () => {
    const ctx = useContext(AuthContext)
@@ -30,6 +33,24 @@ const NavBar = () => {
       setShowNavBar(false);
    }
 
+   const [deleteModal, showDeleteModal] = useState(false)
+
+   function deleteContainer() {
+      showDeleteModal(true)
+   }
+
+   const Signout = async () => {
+      try {
+         await signOut(auth)
+      } catch (error) {
+         console.error(error)
+      }
+      showDeleteModal(false)
+   }
+   function okayFunc() {
+      showDeleteModal(false)
+   }
+
    return (
       <>
          <div className={Styled.navbar}>
@@ -41,7 +62,7 @@ const NavBar = () => {
                {navbar && <IoIosArrowUp className={Styled.icon2} onClick={hideNav}></IoIosArrowUp>}
             </div>
          </div>
-         {navbar && <div className={Styled.dropdown}>
+         {navbar && <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1 }} initial={{ scale: 0 }} className={Styled.dropdown}>
             <div className={Styled["button-container"]}>
                <BsPersonBoundingBox></BsPersonBoundingBox>
                <h3>My Profile</h3>
@@ -51,11 +72,18 @@ const NavBar = () => {
                <h3>Group chat</h3>
             </div>
             <hr />
-            <div className={Styled["button-end-container"]}>
+            <div onClick={deleteContainer} className={Styled["button-end-container"]}>
                <IoIosLogOut></IoIosLogOut>
                <h3>Logout</h3>
             </div>
-         </div>}
+         </motion.div>}
+         {deleteModal && <motion.div animate={{ scale: 1 }} transition={{ type: 'tween', duration: 0.8 }} initial={{ scale: 0 }} className={Styled.dropdowns}>
+            <h1>Are you sure you want to delete this account, you'd have to sign up again🤔</h1>
+            <div className={Styled["button-delete-container"]}>
+               <button onClick={okayFunc}>Go back</button>
+               <button onClick={Signout} className={Styled.red}>Delete Account</button>
+            </div>
+         </motion.div>}
       </>
    )
 }

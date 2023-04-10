@@ -41,6 +41,21 @@
   background-color: white;
   margin-left: auto;
   margin-top: 1em;
+  position: relative;
+  z-index: 1;
+}
+.dropdowns {
+  width: 40%;
+  padding: 1em;
+  border: 1px solid white;
+  height: 220px;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 1em;
+  position: absolute;
+  top: 0;
+  z-index: 12;
+  transform: translate(80%, 30%);
 }
 .button-container {
   display: flex;
@@ -84,6 +99,9 @@
   color: #4f4f4f;
   margin-left: 1em;
 }
+.dropdowns h1 {
+  font-size: 1.2rem;
+}
 .button-second-container h3 {
   font-family: "Noto Sans";
   font-style: normal;
@@ -93,4 +111,14 @@
   letter-spacing: 0.035em;
   color: #4f4f4f;
   margin-left: 1em;
+}
+.button-delete-container {
+  display: flex;
+  margin-top: 1em;
+}
+.button-delete-container button {
+  margin-left: 0.5em;
+}
+.red {
+  background-color: #eb5757;
 }
