@@ -5,6 +5,7 @@ import Login from './Routes/Login'
 import Signup from './Routes/Signup'
 import { auth } from './Firebase/Firebase'
 import Module from './components/ErrorModal'
+import NavBar from './components/NavBar'
 
 function App() {
   const [currentUser, setCurrentUser] = useState()
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path='/signup' element={<Signup></Signup>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/navbar' element={<NavBar></NavBar>}></Route>
         </Routes>
       </AuthContext.Provider>
     </>

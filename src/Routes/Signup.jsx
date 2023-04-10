@@ -76,7 +76,7 @@ const Signup = () => {
 
     return (
         <Wrapper>
-            <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
+            <motion.form onClick={SignUp} animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
                 <div className={Styled.subContainer}>
                     <div className={Styled.img}>
                         <img src={Logo} alt="" />
@@ -90,7 +90,7 @@ const Signup = () => {
                         <input type="password" placeholder='Password' onChange={passwordChange} />
                     </div>
                     <div className="button">
-                        <button disabled={disabled} className={disabled ? Styled.disabledbutton : ''} onClick={SignUp}>Start coding now</button>
+                        <button><Link to='/navbar'>Start coding now</Link></button>
                     </div>
                     <p>or continue with these social profile</p>
                     <div className={Styled.extraLoginDiv}>
@@ -103,7 +103,7 @@ const Signup = () => {
                         <p>Already a member?<Link to='/login'>Login</Link></p>
                     </div>
                 </div>
-            </motion.div>
+            </motion.form>
         </Wrapper>
     )
 }

@@ -38,7 +38,7 @@ const Login = () => {
             await signInWithEmailAndPassword(auth, email, password);
 
         } catch (error) {
-            console.log(error);
+            alert(error);
         }
     };
 
@@ -46,7 +46,7 @@ const Login = () => {
 
     return (
         <Wrapper>
-            <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
+            <motion.div onClick={SignUp} animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
                 <div className={Styled.subContainer}>
                     <div className={Styled.img}>
                         <img src={Logo} alt="" />
@@ -60,7 +60,7 @@ const Login = () => {
                         <input type="password" placeholder='Password' onChange={passwordChange} />
                     </div>
                     <div className="button">
-                        <button disabled={disabled} className={disabled ? Styled.disabledbutton : ''} onClick={SignUp}>Start coding now</button>
+                        <button>Start coding now</button>
                     </div>
                     <div className="loginpage">
                         <p> Not a member?<Link to='/signup'>SignUp</Link></p>
