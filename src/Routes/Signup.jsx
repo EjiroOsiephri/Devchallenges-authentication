@@ -21,18 +21,25 @@ const Signup = () => {
     const [password, setPassword] = useState('');
 
     // disabling button state
-    const [disabled, setDisabled] = useState(false);
+    const [disabled, setDisabled] = useState(true);
     const [animate, setAnimate] = useState(false);
 
 
     const emailChange = (e) => {
         setEmail(e.target.value);
+        if (e.target.value.trim() === '' || password.trim() === '') {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
     };
 
     const passwordChange = (e) => {
         setPassword(e.target.value);
-        if (password.trim() < 1) {
-            setDisabled(true)
+        if (email.trim() === '' || e.target.value.trim() === '') {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
         }
     };
 
@@ -90,7 +97,7 @@ const Signup = () => {
                         <input type="password" placeholder='Password' onChange={passwordChange} />
                     </div>
                     <div className="button">
-                        <button><Link to='/navbar'>Start coding now</Link></button>
+                        <button disabled={disabled}><Link disabled={disabled} to='/details'>Start coding now</Link></button>
                     </div>
                     <p>or continue with these social profile</p>
                     <div className={Styled.extraLoginDiv}>

@@ -19,3 +19,6 @@ export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider(app)
 export const facebookProvider = new FacebookAuthProvider(app)
 export const githubProvider = new GithubAuthProvider(app)
+export const Firestore = getFirestore(app)
+
+export const storage = getStorage(app)

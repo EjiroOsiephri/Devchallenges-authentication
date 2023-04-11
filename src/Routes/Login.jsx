@@ -60,7 +60,7 @@ const Login = () => {
                         <input type="password" placeholder='Password' onChange={passwordChange} />
                     </div>
                     <div className="button">
-                        <button>Start coding now</button>
+                        <button disabled={disabled}><Link disabled={disabled} to='/details'>Start coding now</Link></button>
                     </div>
                     <div className="loginpage">
                         <p> Not a member?<Link to='/'>SignUp</Link></p>
