@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from './NavBar'
 import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
-import { Firestore } from '../Firebase/Firebase'
+import { Firestore, auth } from '../Firebase/Firebase'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
@@ -13,11 +13,9 @@ const DetailsPage = () => {
    async function getAuthData() {
       try {
          const data = await getDocs(authCollectionList)
-         const filteredData = data.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id
-         }))
-         setAuthPage(filteredData)
+         const filteredData = data.docs.filter((doc) => doc.id === auth.currentUser.uid)
+         setAuthPage(filteredData[0].data())
+
       } catch (error) {
          console.log(error);
       }
@@ -44,20 +42,14 @@ const DetailsPage = () => {
             </div>
             <hr />
          </div>
-         <div className="div">
-            {
-               authPage.map((movie, index) => {
-                  console.log(movie);
-                  return <div key={index}>
-                     <h1>{movie.img}</h1>
-                     <h1>{movie.Name}</h1>
-                     <h1>{movie.Bio}</h1>
-                     <h1>{movie.email}</h1>
-                     <h1>{movie.phone}</h1>
-                  </div>
-               })
-            }
+
+         <div >
+            <h1>{authPage.Name || 'NOT SET'}</h1>
+            <h1>{authPage.BIO || 'NOT SET'}</h1>
+            <h1>{authPage.IMG || 'NOT SET'}</h1>
+            <h1>{authPage.EMAIL || 'NOT SET'}</h1>
          </div>
+
       </>
    )
 }

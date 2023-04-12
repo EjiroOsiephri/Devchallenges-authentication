@@ -23,6 +23,9 @@ const Login = () => {
 
     const emailChange = (e) => {
         setEmail(e.target.value);
+        if (email.trim() < 1) {
+            setDisabled(true)
+        }
     };
 
     const passwordChange = (e) => {
@@ -36,7 +39,6 @@ const Login = () => {
     const SignUp = async () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
-
         } catch (error) {
             alert(error);
         }

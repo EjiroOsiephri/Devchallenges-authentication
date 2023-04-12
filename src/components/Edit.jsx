@@ -1,13 +1,14 @@
 import React from 'react'
 import NavBar from './NavBar'
-import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
+import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc, setDoc } from "firebase/firestore"
 import { useState, useEffect } from 'react'
-import { Firestore } from '../Firebase/Firebase'
+import { Firestore, auth } from '../Firebase/Firebase'
 
 const Edit = () => {
    const [authPage, setAuthPage] = useState([])
    const [updateTitle, setUpdatedTitle] = useState('')
    const [updateBio, setUpdatedBio] = useState('')
+   const [updateIMG, setUpdatedIMG] = useState('')
 
 
    const authCollectionList = collection(Firestore, "authDevChallenges")
@@ -29,31 +30,30 @@ const Edit = () => {
       getAuthData()
    }, [])
 
-   const updateMovieTitle = async (id) => {
-      const movieDoc = doc(Firestore, "authDevChallenges", id)
-      await updateDoc(movieDoc, {
+   const updateMovieTitle = async () => {
+      const movieDoc = doc(Firestore, "authDevChallenges", auth.currentUser.uid)
+      await setDoc(movieDoc, {
          Name: updateTitle,
          Bio: updateBio,
+         IMG: updateIMG
       })
       getAuthData()
    }
 
    return (
       <>
-         <NavBar></NavBar>
-
-         <div>Edit</div>
-         {authPage.map((movie, index) => {
-            return <div key={index}>
-               <input type="text" onChange={(e) => {
-                  setUpdatedTitle(e.target.value)
-               }} />
-               <input type="text" onChange={(e) => {
-                  setUpdatedBio(e.target.value)
-               }} />
-               <button onClick={() => updateMovieTitle(movie.id)}>Update movie title</button>
-            </div>
-         })}
+         <div>
+            <input type="text" onChange={(e) => {
+               setUpdatedTitle(e.target.value)
+            }} />
+            <input type="text" onChange={(e) => {
+               setUpdatedBio(e.target.value)
+            }} />
+            <input type="text" onChange={(e) => {
+               setUpdatedIMG(e.target.value)
+            }} />
+            <button onClick={() => updateMovieTitle()}>Update movie title</button>
+         </div>
       </>
 
    )

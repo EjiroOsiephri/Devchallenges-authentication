@@ -13,6 +13,7 @@ import {
 import { auth, googleProvider, githubProvider, facebookProvider } from '../Firebase/Firebase';
 import { motion } from "framer-motion"
 import Wrapper from '../components/Wrapper';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     // Setting states for firebase signup with email and password
@@ -21,8 +22,10 @@ const Signup = () => {
     const [password, setPassword] = useState('');
 
     // disabling button state
-    const [disabled, setDisabled] = useState(true);
+    const [disableds, setDisabled] = useState(false);
     const [animate, setAnimate] = useState(false);
+
+    const navigate = useNavigate()
 
 
     const emailChange = (e) => {
@@ -36,18 +39,15 @@ const Signup = () => {
 
     const passwordChange = (e) => {
         setPassword(e.target.value);
-        if (email.trim() === '' || e.target.value.trim() === '') {
-            setDisabled(true);
-        } else {
-            setDisabled(false);
-        }
     };
 
     // Signing with google
     const googleSignin = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
-        } catch (error) {
+            navigate('/details')
+        }
+        catch (error) {
             console.log(error);
         }
     };
@@ -55,6 +55,7 @@ const Signup = () => {
     const githubSignin = async () => {
         try {
             await signInWithPopup(auth, githubProvider);
+            navigate('/details')
         } catch (error) {
             console.log(error);
         }
@@ -73,11 +74,19 @@ const Signup = () => {
     const SignUp = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-
         } catch (error) {
             console.log(error);
         }
+
     };
+
+    useEffect(() => {
+        if (email.trim() === '' || password.trim() === '') {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
+    }, [email, password])
 
     // codes visible on the screen are returned below
 
@@ -97,7 +106,7 @@ const Signup = () => {
                         <input type="password" placeholder='Password' onChange={passwordChange} />
                     </div>
                     <div className="button">
-                        <button disabled={disabled}><Link disabled={disabled} to='/details'>Start coding now</Link></button>
+                        <button><Link to='/details' className={disableds ? Styled.pointer : `${Styled.button}`}>Start coding now</Link></button>
                     </div>
                     <p>or continue with these social profile</p>
                     <div className={Styled.extraLoginDiv}>

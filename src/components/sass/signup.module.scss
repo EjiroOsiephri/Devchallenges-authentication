@@ -74,6 +74,9 @@ button {
   color: #ffffff;
   margin-bottom: 1.2em;
 }
+.pointer {
+  pointer-events: none;
+}
 p {
   font-family: "Noto Sans";
   font-style: normal;
@@ -98,8 +101,9 @@ p {
 .disabledbutton {
   background-color: #d3d3d3; /* pale gray */
 }
-a {
-  color: #e0e0e0;
+.button button a {
+  text-decoration: none;
+  color: #d3d3d3;
 }
 @media (max-width: 570px) {
   .container {
