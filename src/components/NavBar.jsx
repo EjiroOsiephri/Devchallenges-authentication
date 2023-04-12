@@ -10,6 +10,7 @@ import { auth } from "../Firebase/Firebase"
 import { signOut } from 'firebase/auth'
 import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom';
+import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
 
 const NavBar = () => {
    const ctx = useContext(AuthContext)
@@ -36,8 +37,16 @@ const NavBar = () => {
 
    const [deleteModal, showDeleteModal] = useState(false)
 
-   function deleteContainer() {
-      showDeleteModal(true)
+   async function deleteContainer() {
+      try {
+         showDeleteModal(true)
+         const updateMovieTitle = async (id) => {
+            const movieDoc = doc(Firestore, "authDevChallenges", id)
+            await deleteDoc(movieDoc)
+         }
+      } catch (error) {
+         console.log(error);
+      }
    }
 
    const Signout = async () => {

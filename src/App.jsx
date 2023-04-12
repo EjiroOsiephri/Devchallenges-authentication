@@ -7,6 +7,7 @@ import { auth } from './Firebase/Firebase'
 import Module from './components/ErrorModal'
 import NavBar from './components/NavBar'
 import DetailsPage from './components/DetailsPage'
+import Edit from './components/Edit'
 
 function App() {
   const [currentUser, setCurrentUser] = useState()
@@ -41,6 +42,7 @@ function App() {
           <Route path='/' element={<Signup></Signup>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/details' element={<DetailsPage></DetailsPage>}></Route>
+          <Route path='/edit' element={<Edit></Edit>}></Route>
         </Routes>
       </AuthContext.Provider>
     </>
