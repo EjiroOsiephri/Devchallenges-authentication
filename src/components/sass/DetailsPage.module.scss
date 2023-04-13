@@ -161,6 +161,11 @@
   margin-top: 1em;
   margin-bottom: 20px;
 }
+@media (max-width: 675px) {
+  .email h1 {
+    font-size: 13px;
+  }
+}
 .password h4 {
   font-family: "Noto Sans";
   font-style: normal;

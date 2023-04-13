@@ -1,8 +1,9 @@
 import React from 'react'
 import NavBar from './NavBar'
-import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc, setDoc } from "firebase/firestore"
+import { getDocs, collection, setDoc } from "firebase/firestore"
 import { useState, useEffect } from 'react'
 import { Firestore, auth } from '../Firebase/Firebase'
+import Styled from "../components/sass/EditPage.module.scss"
 
 const Edit = () => {
    const [authPage, setAuthPage] = useState([])
@@ -42,6 +43,11 @@ const Edit = () => {
 
    return (
       <>
+         <NavBar></NavBar>
+         <div className={Styled["text-container"]}>
+            <h3>Profile</h3>
+            <h6>Some info may be visible to other people</h6>
+         </div>
          <div>
             <input type="text" onChange={(e) => {
                setUpdatedTitle(e.target.value)

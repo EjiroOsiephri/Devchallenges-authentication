@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react'
 import { BsFillPersonFill, BsPersonBoundingBox } from "react-icons/bs";
 import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
 import { auth } from "../Firebase/Firebase"
-import { signOut } from 'firebase/auth'
+import { signOut, deleteUser } from 'firebase/auth'
 import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom';
-import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
+import { getDocs, collection } from "firebase/firestore"
 import { Firestore } from '../Firebase/Firebase'
 
 const NavBar = () => {
@@ -81,6 +81,14 @@ const NavBar = () => {
       getAuthData()
    }, [])
 
+   function deleteUsers() {
+      try {
+         deleteUser(auth.currentUser)
+         history('/')
+      } catch (error) {
+         console.log(error);
+      }
+   }
 
    return (
       <>
@@ -112,7 +120,8 @@ const NavBar = () => {
             <h1>Are you sure you want to delete this account, you'd have to sign up again🤔</h1>
             <div className={Styled["button-delete-container"]}>
                <button onClick={okayFunc}>Go back</button>
-               <button onClick={() => { deleteContainer(); goToSignUp(); SignoutPage() }} className={Styled.red}>Delete Account</button>
+               <button onClick={() => { deleteContainer(); goToSignUp(); SignoutPage() }} className={Styled.warn}>SignOut</button>
+               <button onClick={() => { deleteUsers() }} className={Styled.red}>Delete Account</button>
             </div>
          </motion.div>}
       </>

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Styled from '../components/sass/signup.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../components/images/devchallenges.svg';
+import googleImage from '../components/images/Google.svg';
+import githubImage from '../components/images/Gihub.svg';
+import facebookImage from '../components/images/Facebook.svg';
+import twitterImage from '../components/images/Twitter.svg';
 import {
     signInWithEmailAndPassword,
     signInWithPopup,
 } from 'firebase/auth';
-import { auth } from '../Firebase/Firebase';
+import { auth, googleProvider, githubProvider, facebookProvider } from '../Firebase/Firebase';
+
 import { motion } from "framer-motion"
 import Wrapper from '../components/Wrapper';
 
@@ -20,6 +25,7 @@ const Login = () => {
     const [disableds, setDisabled] = useState(false);
     const [animate, setAnimate] = useState(false);
 
+    const navigate = useNavigate()
 
     const emailChange = (e) => {
         setEmail(e.target.value);
@@ -30,6 +36,35 @@ const Login = () => {
         setPassword(e.target.value);
 
     };
+
+    const googleSignin = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider);
+            navigate('/details')
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    // Signing with google
+    const githubSignin = async () => {
+        try {
+            await signInWithPopup(auth, githubProvider);
+            navigate('/details')
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    //Sign in for facebook
+    const facebookSignin = async () => {
+        try {
+            await signInWithPopup(auth, facebookProvider);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
 
     // Sign up button
     const SignUp = async () => {
@@ -66,6 +101,12 @@ const Login = () => {
                     </div>
                     <div className="button">
                         <button><Link to='/details' className={disableds ? Styled.pointer : `${Styled.button}`}>Start coding now</Link></button>
+                    </div>
+                    <div className={Styled.extraLoginDiv}>
+                        <img src={googleImage} onClick={googleSignin} />
+                        <img src={githubImage} onClick={githubSignin} />
+                        <img src={facebookImage} onClick={facebookSignin} />
+                        <img src={twitterImage} />
                     </div>
                     <div className="loginpage">
                         <p> Not a member?<Link to='/'>SignUp</Link></p>

@@ -15,7 +15,7 @@ const Modal = () => {
    return (
       <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.modal}>
          <div className={Styled.content}>
-            <h1>Please enter a valid email and password , thanks</h1>
+            <h1>Please enter a valid email and password , thanks. , also password must be greater than six</h1>
             <p>You can log in with google and the likes if you want to?</p>
          </div>
          <div className={Styled.button} onClick={ctx.button}>

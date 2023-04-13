@@ -41,8 +41,8 @@
   background-color: white;
   margin-left: auto;
   margin-top: 1em;
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  z-index: 17;
 }
 .dropdowns {
   width: 40%;
@@ -54,7 +54,7 @@
   margin-top: 1em;
   position: absolute;
   top: 0;
-  z-index: 12;
+  z-index: 19;
   transform: translate(80%, 30%);
 }
 .button-container {
@@ -87,6 +87,7 @@
 .button-end-container h3 {
   color: #eb5757;
   margin-left: 1em;
+  cursor: pointer;
   font-size: 15px;
 }
 .button-container h3 {
@@ -115,6 +116,9 @@
 .button-delete-container {
   display: flex;
   margin-top: 1em;
+}
+.warn {
+  background-color: goldenrod;
 }
 .button-delete-container button {
   margin-left: 0.5em;
