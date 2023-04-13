@@ -92,7 +92,7 @@ const Signup = () => {
 
     return (
         <Wrapper>
-            <motion.form onClick={SignUp} animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.container}>
+            <motion.form onClick={SignUp} animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 0.6 }} initial={{ scale: 0 }} className={Styled.container}>
                 <div className={Styled.subContainer}>
                     <div className={Styled.img}>
                         <img src={Logo} alt="" />

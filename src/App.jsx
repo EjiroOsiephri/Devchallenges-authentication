@@ -3,15 +3,47 @@ import { Route, Routes } from "react-router-dom"
 import AuthContext from './context/AuthContext'
 import Login from './Routes/Login'
 import Signup from './Routes/Signup'
-import { auth } from './Firebase/Firebase'
+import { Firestore, auth, storage } from './Firebase/Firebase'
 import Module from './components/ErrorModal'
-import NavBar from './components/NavBar'
 import DetailsPage from './components/DetailsPage'
 import Edit from './components/Edit'
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
 function App() {
   const [currentUser, setCurrentUser] = useState()
   const [module, setModule] = useState(true)
+
+  const updateMovieTitle = async () => {
+    const movieDoc = doc(Firestore, "authDevChallenges", auth.currentUser.uid)
+    await setDoc(movieDoc, {
+      Name: updateTitle,
+      BIO: updateBio,
+      phone: updatePhone,
+      EMAIL: updateEmail,
+      password: updatePassword
+    })
+    getAuthData()
+  }
+  const [fileUpload, setFileUpload] = useState(null)
+  const [image, setImage] = useState(null)
+
+  async function fileAdd() {
+    if (!fileUpload) {
+      return
+    }
+    const fileUploadRef = ref(storage, `img/${fileUpload.name}`)
+    console.log(fileUploadRef);
+    try {
+      await uploadBytes(fileUploadRef, fileUpload).then(() => {
+        getDownloadURL(fileUploadRef).then((url) => {
+          setImage(url)
+        })
+      })
+      setFileUpload(null)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const unSubscribe = auth.onAuthStateChanged(user => {
@@ -30,7 +62,8 @@ function App() {
     emailUser: currentUser?.email,
     button: displayModal,
     imgUrl: auth?.currentUser?.photoURL,
-    userName: auth?.currentUser?.displayName
+    userName: auth?.currentUser?.displayName,
+    img: image
   }
 
   console.log(auth);

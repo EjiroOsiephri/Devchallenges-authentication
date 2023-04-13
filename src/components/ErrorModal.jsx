@@ -13,7 +13,7 @@ const Modal = () => {
    const ctx = useContext(AuthContext)
 
    return (
-      <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1.4 }} initial={{ scale: 0 }} className={Styled.modal}>
+      <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 0.6 }} initial={{ scale: 0 }} className={Styled.modal}>
          <div className={Styled.content}>
             <h1>Please enter a valid email and password , thanks. , also password must be greater than six</h1>
             <p>You can log in with google and the likes if you want to?</p>

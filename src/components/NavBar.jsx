@@ -4,7 +4,7 @@ import Styled from "../components/sass/Navbar.module.scss"
 import AuthContext from '../context/AuthContext'
 import { useContext } from 'react'
 import { useState, useEffect } from 'react'
-import { BsFillPersonFill, BsPersonBoundingBox } from "react-icons/bs";
+import { BsPersonBoundingBox } from "react-icons/bs";
 import { IoIosArrowDown, IoIosArrowUp, IoIosLogOut } from "react-icons/io";
 import { auth } from "../Firebase/Firebase"
 import { signOut, deleteUser } from 'firebase/auth'
@@ -12,8 +12,9 @@ import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom';
 import { getDocs, collection } from "firebase/firestore"
 import { Firestore } from '../Firebase/Firebase'
+import person from "../components/images/download.png"
 
-const NavBar = () => {
+const NavBar = (props) => {
    const ctx = useContext(AuthContext)
    const [username, setUsername] = useState(false)
 
@@ -95,13 +96,13 @@ const NavBar = () => {
          <div className={Styled.navbar}>
             <img src={Logo} />
             <div className={Styled["about-me"]}>
-               <BsFillPersonFill className={Styled.icon}></BsFillPersonFill>
+               <img src={props.state || person} className={Styled.icon} alt="" />
                <h5>{username ? 'Enter your name' : `${ctx.userName}`}</h5>
                {!navbar && <IoIosArrowDown className={Styled.icon1} onClick={showNav}></IoIosArrowDown>}
                {navbar && <IoIosArrowUp className={Styled.icon2} onClick={hideNav}></IoIosArrowUp>}
             </div>
          </div>
-         {navbar && <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 1 }} initial={{ scale: 0 }} className={Styled.dropdown}>
+         {navbar && <motion.div animate={{ y: 20, scale: 1 }} transition={{ type: 'tween', duration: 0.6 }} initial={{ scale: 0 }} className={Styled.dropdown}>
             <div className={Styled["button-container"]}>
                <BsPersonBoundingBox></BsPersonBoundingBox>
                <h3>My Profile</h3>

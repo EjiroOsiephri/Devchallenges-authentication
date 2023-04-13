@@ -5,8 +5,9 @@ import { Firestore, auth } from '../Firebase/Firebase'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Styled from "../components/sass/DetailsPage.module.scss"
-import { BsFillPersonFill, BsPersonBoundingBox } from "react-icons/bs";
-
+import { BsFillPersonFill } from "react-icons/bs";
+import { useLocation } from 'react-router-dom'
+import person from "../components/images/download.png"
 
 const DetailsPage = () => {
    const [authPage, setAuthPage] = useState([])
@@ -28,9 +29,12 @@ const DetailsPage = () => {
       getAuthData()
    }, [])
 
+   const location = useLocation()
+   console.log(location.state);
+
    return (
       <>
-         <NavBar></NavBar>
+         <NavBar state={location.state}></NavBar>
          <div className={Styled.all}>
             <div className={Styled["typography"]}>
                <h1>Personal info</h1>
@@ -48,7 +52,7 @@ const DetailsPage = () => {
                <div className={Styled['set-pages']}>
                   <div className={Styled["img"]}>
                      <h1>PHOTO</h1>
-                     <BsFillPersonFill className={Styled.personFill}></BsFillPersonFill>
+                     <img src={location.state || person} alt="" />
                   </div>
                   <hr />
                   <div className={Styled["name"]}>
@@ -68,7 +72,12 @@ const DetailsPage = () => {
                   <hr />
                   <div className={Styled["password"]}>
                      <h4>PASSWORD</h4>
-                     <h1>{authPage.phone || 'NOT SET'}</h1>
+                     <h1>{authPage.password || 'NOT SET'}</h1>
+                  </div>
+                  <hr />
+                  <div className={Styled["password"]}>
+                     <h4>Phone</h4>
+                     <h1>*********</h1>
                   </div>
                   <hr />
                </div>

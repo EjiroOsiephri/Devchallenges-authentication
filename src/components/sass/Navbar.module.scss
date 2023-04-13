@@ -2,10 +2,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1em;
-  margin-inline: 1em;
 }
 .about-me {
   display: flex;
+  justify-content: end;
+  margin-right: 1em;
 }
 .about-me h5 {
   font-family: "Noto Sans";
@@ -89,6 +90,10 @@
   margin-left: 1em;
   cursor: pointer;
   font-size: 15px;
+}
+.about-me img {
+  width: 10%;
+  border-radius: 10px;
 }
 .button-container h3 {
   font-family: "Noto Sans";

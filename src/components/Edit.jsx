@@ -2,10 +2,13 @@ import React from 'react'
 import NavBar from './NavBar'
 import { getDocs, collection, setDoc, doc } from "firebase/firestore"
 import { useState, useEffect } from 'react'
-import { Firestore, auth } from '../Firebase/Firebase'
+import { Firestore, auth, storage } from '../Firebase/Firebase'
 import Styled from "../components/sass/EditPage.module.scss"
 import person from "../components/images/download.png"
 import { Link } from 'react-router-dom'
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import { useContext } from 'react'
+import AuthContext from '../context/AuthContext'
 
 const Edit = () => {
    const [authPage, setAuthPage] = useState([])
@@ -45,52 +48,81 @@ const Edit = () => {
          password: updatePassword
       })
       getAuthData()
+      fileAdd()
+
    }
+   const [fileUpload, setFileUpload] = useState(null)
+   const [image, setImage] = useState(null)
+
+   async function fileAdd() {
+      if (!fileUpload) {
+         return
+      }
+      const fileUploadRef = ref(storage, `img/${fileUpload.name}`)
+      console.log(fileUploadRef);
+      try {
+         await uploadBytes(fileUploadRef, fileUpload).then(() => {
+            getDownloadURL(fileUploadRef).then((url) => {
+               setImage(url)
+            })
+         })
+         setFileUpload(null)
+      } catch (error) {
+         console.log(error);
+      }
+   }
+   console.log(fileUpload);
+
+   const ctx = useContext(AuthContext)
+   console.log(ctx);
 
    return (
       <>
-         <Link to="/details">Go back</Link>
          <NavBar></NavBar>
+         <Link state={image} to="/details">Go back</Link>
          <div className={Styled["allContainer"]}>
             <div className={Styled["img"]}>
-               <img className={Styled['person']} src={person} alt="" />
-               <h4>Change Photo</h4>
+               <img className={Styled['person']} src={image || person} alt="" />
+               <label htmlFor='fileUpload' style={{ width: '50%' }}>Add img</label>
             </div>
+            <input type="file" id='fileUpload' onChange={(e) => {
+               setFileUpload(e.target.files[0])
+            }} />
             <div className={Styled["text-container"]}>
                <h3>Profile</h3>
                <h6>Some info may be visible to other people</h6>
             </div>
             <div className={Styled['name']}>
                <label htmlFor="">NAME</label>
-               <input type="text" onChange={(e) => {
+               <input className={Styled.inputs} type="text" onChange={(e) => {
                   setUpdatedTitle(e.target.value)
                }} />
             </div>
             <div className={Styled["bio"]}>
                <label htmlFor="">BIO</label>
-               <input type="text" onChange={(e) => {
+               <input className={Styled.inputs} type="text" onChange={(e) => {
                   setUpdatedBio(e.target.value)
                }} />
             </div>
             <div className={Styled["phone"]}>
                <label htmlFor="">PHONE</label>
-               <input type="text" onChange={(e) => {
+               <input className={Styled.inputs} type="text" onChange={(e) => {
                   setUpdatedPhone(e.target.value)
                }} />
             </div>
             <div className={Styled["email"]}>
                <label htmlFor="">EMAIL</label>
-               <input type="text" onChange={(e) => {
+               <input className={Styled.inputs} type="text" onChange={(e) => {
                   setUpdatedEmail(e.target.value)
                }} />
             </div>
             <div className={Styled["password"]}>
                <label htmlFor="">PASSWORD</label>
-               <input type="text" onChange={(e) => {
+               <input className={Styled.inputs} type="text" onChange={(e) => {
                   setUpdatedPassword(e.target.value)
                }} />
             </div>
-            <button onClick={() => updateMovieTitle()}>Save</button>
+            <button className={Styled.button} onClick={() => updateMovieTitle()}>Save</button>
          </div>
       </>
 
