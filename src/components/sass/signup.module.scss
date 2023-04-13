@@ -101,9 +101,12 @@ p {
 .disabledbutton {
   background-color: #d3d3d3; /* pale gray */
 }
-.button button a {
+button a {
+  color: #e0e0e0;
   text-decoration: none;
-  color: #d3d3d3;
+}
+a {
+  color: #2f80ed;
 }
 @media (max-width: 570px) {
   .container {

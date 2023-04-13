@@ -1,0 +1,173 @@
+.typography {
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+  z-index: 15;
+}
+.typography h1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 49px;
+  letter-spacing: 0.035em;
+  color: white;
+}
+.typography h6 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.035em;
+  color: white;
+  margin-bottom: 2em;
+}
+@media (max-width: 675px) {
+  .typography h1 {
+    font-size: 25px;
+  }
+}
+.addDoc-container {
+  width: 100%;
+  padding: 2em;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin-bottom: 2em;
+}
+.navigate-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.9em;
+}
+.navigate-container button {
+  width: 100px;
+  background: transparent;
+  border: 1px solid white;
+  padding: 2px;
+}
+.text-container {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: 0.035em;
+  color: white;
+}
+.name {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.bio {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.email {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.email h4 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+.img {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.img h1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.035em;
+  color: #bdbdbd;
+  margin-top: 1em;
+}
+.personFill {
+  font-size: 60px;
+  color: white;
+}
+.name h4 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+.bio h4 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+.name h1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.035em;
+  color: white;
+  margin-bottom: 20px;
+}
+.bio h1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.035em;
+  color: white;
+  margin-bottom: 20px;
+}
+.email h1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.035em;
+  color: white;
+  margin-bottom: 20px;
+}
+.password {
+  display: flex;
+  justify-content: space-around;
+}
+.password h1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.035em;
+  color: white;
+  margin-top: 1em;
+  margin-bottom: 20px;
+}
+.password h4 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.035em;
+  color: #bdbdbd;
+  margin-top: 1.5em;
+}

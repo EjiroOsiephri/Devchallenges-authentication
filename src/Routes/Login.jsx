@@ -17,22 +17,18 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     // disabling button state
-    const [disabled, setDisabled] = useState(false);
+    const [disableds, setDisabled] = useState(false);
     const [animate, setAnimate] = useState(false);
 
 
     const emailChange = (e) => {
         setEmail(e.target.value);
-        if (email.trim() < 1) {
-            setDisabled(true)
-        }
+
     };
 
     const passwordChange = (e) => {
         setPassword(e.target.value);
-        if (password.trim() < 1) {
-            setDisabled(true)
-        }
+
     };
 
     // Sign up button
@@ -40,10 +36,17 @@ const Login = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
         } catch (error) {
-            alert(error);
+            console.log(error);
         }
     };
 
+    useEffect(() => {
+        if (email.trim() === '' || password.trim() === '') {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
+    }, [email, password])
     // codes visible on the screen are returned below
 
     return (
@@ -62,7 +65,7 @@ const Login = () => {
                         <input type="password" placeholder='Password' onChange={passwordChange} />
                     </div>
                     <div className="button">
-                        <button disabled={disabled}><Link disabled={disabled} to='/details'>Start coding now</Link></button>
+                        <button><Link to='/details' className={disableds ? Styled.pointer : `${Styled.button}`}>Start coding now</Link></button>
                     </div>
                     <div className="loginpage">
                         <p> Not a member?<Link to='/'>SignUp</Link></p>
