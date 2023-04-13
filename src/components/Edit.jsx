@@ -49,7 +49,7 @@ const Edit = () => {
 
    return (
       <>
-         <Link to="/details"></Link>
+         <Link to="/details">Go back</Link>
          <NavBar></NavBar>
          <div className={Styled["allContainer"]}>
             <div className={Styled["img"]}>
